@@ -1,0 +1,39 @@
+<div id="sidebar">
+    <h3>Категории</h3>
+    <ul>
+        {% if not category and not brand%}
+        <li class="selected">
+            <a href="{% url 'product_list' %}">Все</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'product_list' %}">Все</a>
+        </li>
+        {% endif %}
+        {% for caty in categories %}
+        {% if category.slug == caty.slug %}
+        <li class="selected">
+            <a href="{{ caty.get_absolute_url }}">{{ caty.name }}</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{{ caty.get_absolute_url }}">{{ caty.name }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <h3> Бренды </h3>
+    <ul>
+        {% for brnd in brands %}
+        {% if brand.slug == brnd.slug %}
+        <li class="selected">
+            <a href="{{ brnd.get_absolute_url }}">{{ brnd.name }}</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{{ brnd.get_absolute_url }}">{{ brnd.name }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+{%for product in products%}
+<img src="{% static  %}" alt="">
+{% endfor %}
+{% endblock %}

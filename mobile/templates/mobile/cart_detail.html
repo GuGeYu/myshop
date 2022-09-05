@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Your shopping cart
+{% endblock %}
+{% block content %}
+
+<main class="container my-4" id="cartList">
+    <h3 class="my-4 border-bottom pb-1">Cart</h3>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Изображение
+        </th>
+        <th>Название</th>
+        <th>Количество</th>
+        <th>Цена за шт.</th>
+        <th>Сумма</th>
+        <th>Удалить</th>
+    </tr>
+    <tbody>
+    {% for item in cart %}
+    {% with product=item.product %}
+    <tr>
+        <td>
+            <a href="{{ product.get_absolute_url }}">
+                <img src="{{ product.image.url }}" width="70">
+            </a>
+        </td>
+        <td>{{ product.name }}</td>
+        <td>{{ item.quantity}}</td>
+        <td class="num">${{ item.price }}</td>
+        <td class="num">${{ item.total_price }}</td>
+        <td>
+            <form action="{% url 'cart_remove' product.id %}" method="post">
+                <input type="submit" value="Remove">
+                {% csrf_token %}
+            </form>
+        </td>
+    </tr>
+    {% endwith %}
+    {% endfor %}
+    <tfoot>
+    <tr class="total">
+        <td colspan="3"></td>
+        <th>Итого</th>
+        <th class="num">{{ cart.get_total_price }}руб.</th>
+    </tr>
+    </tfoot>
+    </tbody>
+</table>
+<p class="text-right">
+    <a href="{% url 'product_list' %}" class="button light">Вернуться к покупкам</a>
+    <a href="{% url 'order_create' %}" class="button">Оформить заказ</a>
+</p>
+</main>
+{% endblock %}

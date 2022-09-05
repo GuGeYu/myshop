@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{% if category %}
+{{ category.name }}
+{% elif product %}
+{{ product.name}}
+{% elif brand %}
+{{ brand.name}}
+{% else %}
+Электроника
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-interval="10000">
+      <img src="{% static 'mobile/banner5.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" data-interval="10000">
+      <img src="{% static 'mobile/banner6.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" data-interval="10000">
+      <img src="{% static 'mobile/banner7.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-target="#carouselExampleInterval" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-target="#carouselExampleInterval" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </button>
+</div>
+<style>
+   .scale {
+    transition: 2s;
+   }
+   .scale:hover {
+    transform: scale(3);
+   }
+</style>
+
+<div id="main" class="product-list">
+    {% if category %}
+    <h1>{{ category.name }}</h1>
+    {% endif %}
+    {% if brand %}
+    <h1>{{ brand.name }}</h1>
+    {% endif %}
+    <div class="container mt-3">
+        <div class="row">
+            {% for product in page_obj %}
+            <div class="card mb-3" style="width: 18rem;">
+                <div class="col-md-4">
+			        <img id="zoom_01" data-zoom-image="{{product.image.url}}" src="{{product.image.url}}" class="card-img-top scale">
+		        </div>
+<!--                <img src="{{product.image.url}}" class="card-img-top">-->
+                <div class="card-body">
+                    <p class="card-text"> {{ product.brand }}</p>
+                    <h5 class="card-title"><a href="{{ product.get_absolute_url }}" class="card-link">{{ product.name }}</a></h5>
+                    <p class="card-text"> {{ product.price }}</p>
+                    <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
