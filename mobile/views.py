@@ -5,17 +5,6 @@ from django.views.decorators.http import require_POST
 from .forms import CartAddProductForm, OrderCreateForm
 from django.core.paginator import Paginator
 
-# from .forms import NewsForm, UserRegisterForm, UserLoginForm, ContactForm
-# from django.views.generic import ListView, DetailView, CreateView
-# from django.urls import reverse_lazy
-# from .utils import MyMixin
-# from django.contrib.auth.mixins import LoginRequiredMixin
-# from django.core.paginator import Paginator
-# from django.contrib.auth.forms import UserCreationForm
-# from django.contrib import messages
-# from django.contrib.auth import login,logout
-# from django.core.mail import send_mail
-
 
 def test(request):
     products = Product.objects.all()
@@ -64,34 +53,6 @@ def product_list(request, category_slug=None, brand_slug=None):
                        # 'products': products,
                        'brands': brands,
                        'page_obj': page_obj})
-
-# def product_list(request, category_slug=None, brand_slug=None):
-#     category = None
-#     brand = None
-#     if category_slug or brand_slug:
-#         categories = Category.objects.all()
-#         brands = Brand.objects.all()
-#         if category_slug and brand_slug:
-#             category = get_object_or_404(Category, slug=category_slug)
-#             brand = get_object_or_404(Brand, slug=brand_slug)
-#             products = Product.objects.filter(available=True, brand=brand, category=category)
-#         elif category_slug:
-#             category = get_object_or_404(Category, slug=category_slug)
-#             products = Product.objects.filter(category=category)
-#         elif brand_slug:
-#             brand = get_object_or_404(Brand, slug=brand_slug)
-#             products = Product.objects.filter(available=True, brand=brand)
-#     else:
-#         categories = Category.objects.all()
-#         products = Product.objects.filter(available=True)
-#         brands = Brand.objects.all()
-#     return render(request,
-#                   'mobile/list.html',
-#                   {'category': category,
-#                    'categories': categories,
-#                    'products': products,
-#                    'brand': brand,
-#                    'brands': brands})
 
 
 def product_detail(request, id, slug):
