@@ -23,7 +23,7 @@
         {% if cart|length > 0 %}
         Ваша корзина:
         <a href="{% url 'cart_detail' %}">
-            {{ total_items }} шт. {{ total_items|pluralize }},
+            {{ total_items }} шт.,
             {{ cart.get_total_price }} руб.
         </a>
         {% else %}

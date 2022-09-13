@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Category, Product, Order, OrderItem, Brand
+from .models import Category, Product, Brand
+
 # from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
 
@@ -9,18 +10,6 @@ from django import forms
 #     class Meta:
 #         model = Product # связан с этой моделью
 #         fields = '__all__'
-
-class OrderItemInline(admin.TabularInline):
-    model = OrderItem
-    raw_id_fields = ['product']
-
-
-class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'first_name', 'last_name', 'email',
-                    'address', 'postal_code', 'city', 'paid',
-                    'created', 'updated']
-    list_filter = ['paid', 'created', 'updated']
-    inlines = [OrderItemInline]
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -42,7 +31,6 @@ class BrandAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Order, OrderAdmin)
 admin.site.register(Brand, BrandAdmin)
 
 admin.site.site_title = 'Админка'

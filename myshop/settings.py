@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mobile',
+    'cart',
+    'orders',
+
 ]
 
 MIDDLEWARE = [
@@ -64,7 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'mobile.context_processor.cart',
+                'cart.context_processor.cart',
             ],
         },
     },
