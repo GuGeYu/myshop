@@ -135,3 +135,10 @@ CART_SESSION_ID = 'cart'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'pol'  # не забыть удалить прежде чем выложить на гитхаб
+EMAIL_HOST_PASSWORD = 'y'  # не забыть удалить прежде чем выложить на гитхаб
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+
